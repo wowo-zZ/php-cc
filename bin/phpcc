@@ -1,0 +1,38 @@
+#!/usr/bin/env php
+<?php
+# check git
+echo "Checking git repository...\n";
+if (!is_dir("./.git")) {
+    echo "Your project has not been init by git! Please check it...\n";
+    exit(1);
+}
+
+# check phplint
+echo "Checking phplint install...\n";
+exec('./vendor/bin/phplint --version', $phplint_check_rs, $return_var);
+if ($return_var) {
+    echo "Checking phplint failed! Please install phplint first!";
+    exit(1);
+} else {
+    echo "Checking phplint success!\n";
+    echo $phplint_check_rs[0] . "\n";
+}
+
+# check phpcs
+echo "Checking phpcs install...\n";
+exec('phpcs --version', $phpcs_check_rs, $return_var);
+if ($return_var) {
+    echo "Checking phpcs failed! Please install phpcs first!";
+} else {
+    echo "Checking phpcs success!\n";
+    echo $phpcs_check_rs[0] . "\n";
+    exit(1);
+}
+
+if (is_file('../../.git/hooks/pre-commit')) {
+    exec('mv ../../.git/hooks/pre-commit ../../.git/hooks/pre-commit.bak');
+}
+exec('cp ../zhenggui/php-cc/pre-commit ../../.git/hooks');
+
+echo 'php-cc install success!';
+exit(0);
