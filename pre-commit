@@ -8,7 +8,8 @@ do
         continue
     fi
     # phplint
-    phplintResult=`/usr/local/var/www/githooks/vendor/bin/phplint $var | grep error`
+#    phplintResult=`/usr/local/var/www/githooks/vendor/bin/phplint $var | grep error`
+    phplintResult=`./vendor/bin/phplint $var | grep error`
     if [ x"$phplintResult" != x ]; then 
         echo "-------------------------------------"
         echo "Git commit error, get phplint errors:"
