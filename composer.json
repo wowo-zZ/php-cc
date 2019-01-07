@@ -2,10 +2,6 @@
   "name": "zhenggui/php-cc",
   "description": "php code check tool",
   "type": "util",
-  "require": {
-    "overtrue/phplint": "^1.1",
-    "squizlabs/php_codesniffer": "^3.4"
-  },
   "authors": [
     {
       "name": "wowoinhfut",
@@ -14,5 +10,17 @@
   ],
   "bin": [
     "bin/phpcc"
-  ]
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "http://172.31.202.28:8098"
+    },
+    {
+      "packagist": false
+    }
+  ],
+  "config": {
+    "secure-http": false
+  }
 }
