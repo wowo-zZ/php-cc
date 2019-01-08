@@ -22,7 +22,7 @@ do
     fi
 
     # phpcs
-    phpcsResult=`phpcs --standard=psr2 $var | grep ERROR`
+    phpcsResult=`phpcs --standard=psr2 $var | grep ERRORS | grep -v "0 ERRORS"`
     if [ x"$phpcsResult" != x ]; then 
         echo "-------------------------------------"
         echo "Git commit error, get phpcs errors:"
