@@ -22,6 +22,7 @@ composer require zhenggui/php-cc
 - v1.2:设定默认的phpcs standard为psr2
 - v1.3:bugfix(修复命令路径错误的问题)
 - v1.4:bugfix(修复phpcs检查失败时返回成功的问题)
+- v1.5:bugfix(修复phpcs，忽略warnings)
 
 #### todolist
 - 识别文件格式，php文件才进行check
