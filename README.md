@@ -20,6 +20,8 @@ composer require zhenggui/php-cc
 - v1.0:初始版本
 - v1.1:修复composer安装bug
 - v1.2:设定默认的phpcs standard为psr2
+- v1.3:bugfix(修复命令路径错误的问题)
+- v1.4:bugfix(修复phpcs检查失败时返回成功的问题)
 
 #### todolist
 - 识别文件格式，php文件才进行check
