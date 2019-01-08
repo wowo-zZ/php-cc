@@ -13,7 +13,7 @@ do
     if [ x"$phplintResult" != x ]; then 
         echo "-------------------------------------"
         echo "Git commit error, get phplint errors:"
-        /usr/local/var/www/githooks/vendor/bin/phplint $var | while read line
+        ./vendor/bin/phplint $var | while read line
         do 
             echo $line
         done
