@@ -26,12 +26,12 @@ composer require zhenggui/php-cc
 - v1.6:bugfix(修复exit位置问题)
 
 #### todolist
-- 识别文件格式，php文件才进行check
-- 支持配置phpcs standard
-- 支持分别启用/关停 phplint和phpcs
-- 支持自定义phplint和phpcs的命令所在目录
-- 支持phpcs过滤关键字，为了支持现有项目可能存在某些不便改造的代码风格
-- 支持关闭phpcc，并将pre-commit还原
+-[ ] 识别文件格式，php文件才进行check
+-[ ] 支持配置phpcs standard
+-[ ] 支持分别启用/关停 phplint和phpcs
+-[ ] 支持自定义phplint和phpcs的命令所在目录
+-[ ] 支持phpcs过滤关键字，为了支持现有项目可能存在某些不便改造的代码风格
+-[ ] 支持关闭phpcc，并将pre-commit还原
 
 #### 注意事项
 phpcc的pre-commit会覆盖原有的pre-commit，但仍然会将它备份为pre-commit.bak。所以之前有在pre-commit中插入操作，请谨慎安装。

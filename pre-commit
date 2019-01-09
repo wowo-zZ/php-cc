@@ -7,8 +7,13 @@ do
     if [ "$var" = "M" ] || [ "$var" = "A" ]; then
         continue
     fi
+
+    # check php file
+    if [[ ! $var =~ ".php" ]]; then
+        echo "Check file $var: not php file, ignoring..."
+    fi
+
     # phplint
-#    phplintResult=`/usr/local/var/www/githooks/vendor/bin/phplint $var | grep error`
     phplintResult=`./vendor/bin/phplint $var | grep error`
     if [ x"$phplintResult" != x ]; then 
         echo "-------------------------------------"
