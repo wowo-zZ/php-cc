@@ -4,7 +4,7 @@ a=`git status -s`
 array=(${a//,/ })  
 for var in ${array[@]}
 do
-    if [ "$var" = "M" ] || [ "$var" = "A" ]; then
+    if [ "$var" = "M" ] || [ "$var" = "A" ] || [ "$var" = "D" ]; then
         continue
     fi
 
