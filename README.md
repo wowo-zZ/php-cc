@@ -26,7 +26,7 @@ composer require zhenggui/php-cc
 - v1.6:bugfix(修复exit位置问题)
 
 #### todolist
--[ ] 识别文件格式，php文件才进行check
+-[x] 识别文件格式，php文件才进行check
 -[ ] 支持配置phpcs standard
 -[ ] 支持分别启用/关停 phplint和phpcs
 -[ ] 支持自定义phplint和phpcs的命令所在目录
