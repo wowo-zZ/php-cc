@@ -39,4 +39,5 @@ do
         exit 1
     fi
 done
+echo "Congratulations! Code check success!"
 exit 0
