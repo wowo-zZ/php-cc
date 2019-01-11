@@ -14,9 +14,11 @@ switch ($argv[1]) {
         install();
         break;
     case 'remove':
+        remove();
         break;
     default:
         print<<<EOT
+No such command...
 install:    install php-cc,add pre-commit to .git/hooks,and rename the old pre-commit file to pre-commit.bak
 remove:     remove php-cc,remove .git/hooks/pre-commit,and mv pre-commit.bak to pre-commit
 EOT;
@@ -33,7 +35,7 @@ function install()
         exit(1);
     }
 
-# check phplint
+    # check phplint
     echo "Checking phplint install...\n";
     exec('./vendor/bin/phplint --version', $phplint_check_rs, $return_var);
     if ($return_var) {
@@ -44,7 +46,7 @@ function install()
         echo $phplint_check_rs[0] . "\n";
     }
 
-# check phpcs
+    # check phpcs
     echo "Checking phpcs install...\n";
     exec('phpcs --version', $phpcs_check_rs, $return_var);
     if ($return_var) {
@@ -62,4 +64,21 @@ function install()
 
     echo "php-cc install success!\n";
     exit(0);
+}
+
+function remove()
+{
+    # delete phpcc file
+    echo "Delete pre-commit file...\n";
+    if (is_file('.git/hooks/pre-commit')) {
+        exec('rm -f .git/hooks/pre-commit');
+    }
+
+    # check old file
+    echo "Retrieve the old pre-commit file...\n";
+    if (is_file('.git/hooks/pre-commit.bak')) {
+        exec('mv .git/hooks/pre-commit.bak .git/hooks/pre-commit');
+    }
+
+    echo "Remove phpcc success!\n";
 }
