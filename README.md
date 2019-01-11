@@ -12,6 +12,12 @@ composer require zhenggui/php-cc
 
 这样，在git commit之前，就会执行phplint和phpcs检查待提交的文件，如果不满足要求，则会组织代码提交。
 
+#### 指令
+|指令|用法|
+|----|----|
+|install|安装php-cc|
+|remove|移除php-cc|
+
 #### 注意事项
 1. 建议使用最新版本，最新版本可以在仓库的tags中查看;
 2. 包以提交到packagist，但是国内安装比较慢，推荐自建composer的repository来安装。
@@ -25,6 +31,7 @@ composer require zhenggui/php-cc
 - v1.5:bugfix(修复phpcs，忽略warnings)
 - v1.6:bugfix(修复exit位置问题)
 - v1.7:支持Delete类型文件
+- v1.8:支持remove php-cc，并将原有的pre-commit还原
 
 #### todolist
 - ~~识别文件格式，php文件才进行check~~
@@ -32,7 +39,7 @@ composer require zhenggui/php-cc
 - 支持分别启用/关停 phplint和phpcs
 - 支持自定义phplint和phpcs的命令所在目录
 - 支持phpcs过滤关键字，为了支持现有项目可能存在某些不便改造的代码风格
-- 支持关闭phpcc，并将pre-commit还原
+- ~~支持关闭phpcc，并将pre-commit还原~~
 - 支持phpcc配置
 
 #### 注意事项
