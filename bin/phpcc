@@ -1,38 +1,65 @@
 #!/usr/bin/env php
 <?php
-# check git
-echo "Checking git repository...\n";
-if (!is_dir("./.git")) {
-    echo "Your project has not been init by git! Please check it...\n";
+
+if (count($argv) < 2) {
+    print<<<EOT
+    install:    install php-cc,add pre-commit to .git/hooks,and rename the old pre-commit file to pre-commit.bak
+    remove:     remove php-cc,remove .git/hooks/pre-commit,and mv pre-commit.bak to pre-commit
+EOT;
     exit(1);
 }
+
+switch ($argv[1]) {
+    case 'install':
+        install();
+        break;
+    case 'remove':
+        break;
+    default:
+        print<<<EOT
+install:    install php-cc,add pre-commit to .git/hooks,and rename the old pre-commit file to pre-commit.bak
+remove:     remove php-cc,remove .git/hooks/pre-commit,and mv pre-commit.bak to pre-commit
+EOT;
+        break;
+}
+exit(1);
+
+function install()
+{
+    # check git
+    echo "Checking git repository...\n";
+    if (!is_dir("./.git")) {
+        echo "Your project has not been init by git! Please check it...\n";
+        exit(1);
+    }
 
 # check phplint
-echo "Checking phplint install...\n";
-exec('./vendor/bin/phplint --version', $phplint_check_rs, $return_var);
-if ($return_var) {
-    echo "Checking phplint failed! Please install phplint first!";
-    exit(1);
-} else {
-    echo "Checking phplint success!\n";
-    echo $phplint_check_rs[0] . "\n";
-}
+    echo "Checking phplint install...\n";
+    exec('./vendor/bin/phplint --version', $phplint_check_rs, $return_var);
+    if ($return_var) {
+        echo "Checking phplint failed! Please install phplint first!";
+        exit(1);
+    } else {
+        echo "Checking phplint success!\n";
+        echo $phplint_check_rs[0] . "\n";
+    }
 
 # check phpcs
-echo "Checking phpcs install...\n";
-exec('phpcs --version', $phpcs_check_rs, $return_var);
-if ($return_var) {
-    echo "Checking phpcs failed! Please install phpcs first!";
-    exit(1);
-} else {
-    echo "Checking phpcs success!\n";
-    echo $phpcs_check_rs[0] . "\n";
-}
+    echo "Checking phpcs install...\n";
+    exec('phpcs --version', $phpcs_check_rs, $return_var);
+    if ($return_var) {
+        echo "Checking phpcs failed! Please install phpcs first!";
+        exit(1);
+    } else {
+        echo "Checking phpcs success!\n";
+        echo $phpcs_check_rs[0] . "\n";
+    }
 
-if (is_file('./.git/hooks/pre-commit')) {
-    exec('mv ./.git/hooks/pre-commit ./.git/hooks/pre-commit.bak');
-}
-exec('cp ./vendor/zhenggui/php-cc/pre-commit ./.git/hooks');
+    if (is_file('./.git/hooks/pre-commit')) {
+        exec('mv ./.git/hooks/pre-commit ./.git/hooks/pre-commit.bak');
+    }
+    exec('cp ./vendor/zhenggui/php-cc/pre-commit ./.git/hooks');
 
-echo "php-cc install success!\n";
-exit(0);
+    echo "php-cc install success!\n";
+    exit(0);
+}
