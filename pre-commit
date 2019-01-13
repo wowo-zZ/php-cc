@@ -1,4 +1,9 @@
 #!/bin/sh
+
+# read config file
+source ./phpcc.ini
+
+
 a=`git status -s` 
 
 array=(${a//,/ })  
@@ -11,33 +16,43 @@ do
     # check php file
     if [[ ! $var =~ ".php" ]]; then
         echo "Check file $var: not php file, ignoring..."
+        continue
     fi
 
     # phplint
-    phplintResult=`./vendor/bin/phplint $var | grep error`
-    if [ x"$phplintResult" != x ]; then 
-        echo "-------------------------------------"
-        echo "Git commit error, get phplint errors:"
-        ./vendor/bin/phplint $var | while read line
-        do 
-            echo $line
-        done
-        echo "-------------------------------------"
-        exit 1
+    if [[ $phplint == "true" ]]; then
+        phplintResult=`./vendor/bin/phplint $var | grep error`
+        if [ x"$phplintResult" != x ]; then
+            echo "-------------------------------------"
+            echo "Git commit error, get phplint errors:"
+            ./vendor/bin/phplint $var | while read line
+            do
+                echo $line
+            done
+            echo "-------------------------------------"
+            exit 1
+        else
+            echo "phplint file [$var] success !"
+        fi
     fi
 
     # phpcs
-    phpcsResult=`phpcs --standard=psr2 $var | grep ERRORS | grep -v "0 ERRORS"`
-    if [ x"$phpcsResult" != x ]; then 
-        echo "-------------------------------------"
-        echo "Git commit error, get phpcs errors:"
-        phpcs $var | while read line 
-        do 
-            echo $line
-        done
-        echo "-------------------------------------"
-        exit 1
+    if [[ $phpcs == "true" ]]; then
+        phpcsResult=`phpcs --standard=psr2 $var | grep ERRORS | grep -v "0 ERRORS"`
+        if [ x"$phpcsResult" != x ]; then
+            echo "-------------------------------------"
+            echo "Git commit error, get phpcs errors:"
+            phpcs $var | while read line
+            do
+                echo $line
+            done
+            echo "-------------------------------------"
+            exit 1
+        else
+            echo "phpcs file [$var] success !"
+        fi
     fi
 done
+
 echo "Congratulations! Code check success!"
 exit 0
