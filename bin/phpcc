@@ -82,3 +82,22 @@ function remove()
 
     echo "Remove phpcc success!\n";
 }
+
+function get_ini_file($file_name)
+{
+    $str = file_get_contents($file_name);
+    $ini_list = explode("\n", $str);
+    $ini_items = array();
+    foreach ($ini_list as $item) {
+        $one_item = explode("=", $item);
+        if (isset($one_item[0]) && isset($one_item[1])) {
+            $ini_items[trim($one_item[0])] = trim($one_item[1]);
+        }
+    }
+    return $ini_items;
+}
+
+function write_ini_file($key, $value)
+{
+    return true;
+}
