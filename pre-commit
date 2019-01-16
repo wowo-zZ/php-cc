@@ -3,6 +3,15 @@
 # read config file
 source ./phpcc.ini
 
+# check if phplint_path is config
+if [ x"$phplint_path" = x ]; then
+    phplint_path="./vendor/bin/phplint"
+fi
+
+# check if phpcs_path is config
+if [ x"$phpcs_path" = x ]; then
+    phpcs_path="phpcs"
+fi
 
 a=`git status -s` 
 
