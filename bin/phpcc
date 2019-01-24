@@ -105,5 +105,15 @@ function get_ini_file($file_name)
 
 function write_ini_file($key, $value)
 {
+    $config_file_path = './phpcc.ini';
+    $content = file_get_contents($config_file_path);
+    if (strpos($content, "$key=")) {
+        $content = preg_replace("/$key=.*/", "$key=$value", $content);
+    } else {
+        $content .= "\n";
+        $content .= "$key=$value";
+    }
+    $file = fopen($config_file_path, 'w');
+    fwrite($file, $content);
     return true;
 }
