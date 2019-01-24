@@ -36,8 +36,8 @@ composer require zhenggui/php-cc
 #### todolist
 - ~~识别文件格式，php文件才进行check~~
 - 支持配置phpcs standard
-- 支持分别启用/关停 phplint和phpcs
-- 支持自定义phplint和phpcs的命令所在目录
+- ~~支持分别启用/关停 phplint和phpcs~~
+- ~~支持自定义phplint和phpcs的命令所在目录~~
 - 支持phpcs过滤关键字，为了支持现有项目可能存在某些不便改造的代码风格
 - ~~支持关闭phpcc，并将pre-commit还原~~
 - 支持phpcc配置
