@@ -5,6 +5,7 @@ if (count($argv) < 2) {
     print<<<EOT
     install:    install php-cc,add pre-commit to .git/hooks,and rename the old pre-commit file to pre-commit.bak
     remove:     remove php-cc,remove .git/hooks/pre-commit,and mv pre-commit.bak to pre-commit
+    config:     config php-cc,[phpcc config key value] is to set config item [key] to value [value]
 EOT;
     exit(1);
 }
@@ -15,6 +16,11 @@ switch ($argv[1]) {
         break;
     case 'remove':
         remove();
+        break;
+    case 'config':
+        if (isset($argv[2]) && isset($argv[3])) {
+            write_ini_file($argv[2], $argv[3]);
+        }
         break;
     default:
         print<<<EOT
