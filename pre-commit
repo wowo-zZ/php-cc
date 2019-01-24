@@ -1,18 +1,38 @@
 #!/bin/sh
 
+# 引入配置文件
 # read config file
 source ./phpcc.ini
 
+# 检查phplint的命令路径是否配置
+# 如果没有配置,则使用默认的路径
+# 如果配置了,则进一步检查配置的路径是否正确
 # check if phplint_path is config
 if [ x"$phplint_path" = x ]; then
     phplint_path="./vendor/bin/phplint"
+else
+    $phplint_path --version > /dev/null
+    if [ $? -ne 0 ]; then
+        echo "Command phplint error, please check it and retry~"
+        exit 1
+    fi
 fi
 
+# 检查phpcs的命令路径是否配置
+# 如果没有配置,则使用默认的路径
+# 如果配置了,则进一步检查配置的路径是否正确
 # check if phpcs_path is config
 if [ x"$phpcs_path" = x ]; then
     phpcs_path="phpcs"
+else
+    $phpcs_path --version > /dev/null
+    if [ $? -ne 0 ]; then
+        echo "Command phpcs error, please check it and retry~"
+        exit 1
+    fi
 fi
 
+# 获取本次提交的差异文件
 a=`git status -s` 
 
 array=(${a//,/ })  
