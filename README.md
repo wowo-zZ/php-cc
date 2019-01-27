@@ -40,7 +40,7 @@ composer require zhenggui/php-cc
 - ~~支持自定义phplint和phpcs的命令所在目录~~
 - 支持phpcs过滤关键字，为了支持现有项目可能存在某些不便改造的代码风格
 - ~~支持关闭phpcc，并将pre-commit还原~~
-- 支持phpcc配置
+- ~~支持phpcc配置~~
 - 使用项目绝对路径替代相对路径
 - 包依赖中加入phplint和phpcs检查
 - ~~pre-commit中增加对命令的检查~~
