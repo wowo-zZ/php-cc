@@ -67,7 +67,7 @@ do
 
     # phpcs
     if [[ $phpcs == "true" ]]; then
-        phpcsResult=`$phpcs_path --standard=psr2 $var | grep ERROR | grep -v "0 ERRORS"`
+        phpcsResult=`$phpcs_path --standard=psr2 $var | grep ERROR | grep -v "0 ERRORS\|exist\|usage"`
         if [ x"$phpcsResult" != x ]; then
             echo "-------------------------------------"
             echo "Git commit error, get phpcs errors:"
