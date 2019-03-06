@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # 引入配置文件
 # read config file
@@ -33,9 +33,9 @@ else
 fi
 
 # 获取本次提交的差异文件
-a=`git status -s` 
+a=`git status -s`
 
-array=(${a//,/ })  
+array=(${a//,/ })
 for var in ${array[@]}
 do
     if [ "$var" = "M" ] || [ "$var" = "A" ] || [ "$var" = "D" ]; then

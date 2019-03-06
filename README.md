@@ -44,6 +44,7 @@ composer require zhenggui/php-cc
 - 使用项目绝对路径替代相对路径
 - 包依赖中加入phplint和phpcs检查
 - ~~pre-commit中增加对命令的检查~~
+- 支持强制模式/人工选择模式
 
 #### 注意事项
 phpcc的pre-commit会覆盖原有的pre-commit，但仍然会将它备份为pre-commit.bak。所以之前有在pre-commit中插入操作，请谨慎安装。
