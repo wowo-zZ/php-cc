@@ -8,7 +8,7 @@ PHP code check
 #### 使用
 composer require zhenggui/php-cc
 
-安装成功之后执行:``./vendor/bin/phpcc``该命令会检查phplint、phpcs的安装情况，并将git原有的pre-commit钩子备份，再将php-cc的pre-commit钩子拷贝至``.git/hooks``中。
+安装成功之后执行:``composer exec phpcc install``该命令会检查phplint、phpcs的安装情况，并将git原有的pre-commit钩子备份，再将php-cc的pre-commit钩子拷贝至``.git/hooks``中。
 
 这样，在git commit之前，就会执行phplint和phpcs检查待提交的文件，如果不满足要求，则会组织代码提交。
 
