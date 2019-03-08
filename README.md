@@ -40,6 +40,7 @@ composer require zhenggui/php-cc
 - 支持phpcs过滤关键字，为了支持现有项目可能存在某些不便改造的代码风格
 - 备份git的钩子时,使用时间,防止覆盖已有的备份
 - 支持配置项的查看
+- phpcs过滤waring结果
 - ~~识别文件格式，php文件才进行check~~
 - ~~支持分别启用/关停 phplint和phpcs~~
 - ~~支持自定义phplint和phpcs的命令所在目录~~
