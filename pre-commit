@@ -8,11 +8,11 @@ source ./vendor/zhenggui/php-cc/phpcc.ini
 # 如果没有配置,则使用默认的路径
 # 如果配置了,则进一步检查配置的路径是否正确
 # check if phplint_path is config
-if [ x"$phplint_path" = x ]; then
+if [[ x"$phplint_path" = x ]]; then
     phplint_path="./vendor/bin/phplint"
 else
-    $phplint_path --version > /dev/null
-    if [ $? -ne 0 ]; then
+    ${phplint_path} --version > /dev/null
+    if [[ $? -ne 0 ]]; then
         echo "Command phplint error, please check it and retry~"
         exit 1
     fi
@@ -22,11 +22,11 @@ fi
 # 如果没有配置,则使用默认的路径
 # 如果配置了,则进一步检查配置的路径是否正确
 # check if phpcs_path is config
-if [ x"$phpcs_path" = x ]; then
+if [[ x"$phpcs_path" = x ]]; then
     phpcs_path="phpcs"
 else
-    $phpcs_path --version > /dev/null
-    if [ $? -ne 0 ]; then
+    ${phpcs_path} --version > /dev/null
+    if [[ $? -ne 0 ]]; then
         echo "Command phpcs error, please check it and retry~"
         exit 1
     fi
@@ -38,25 +38,25 @@ a=`git status -s`
 array=(${a//,/ })
 for var in ${array[@]}
 do
-    if [ "$var" = "M" ] || [ "$var" = "A" ] || [ "$var" = "D" ]; then
+    if [[ "$var" = "M" ]] || [[ "$var" = "A" ]] || [[ "$var" = "D" ]]; then
         continue
     fi
 
     # check php file
-    if [[ ! $var =~ ".php" ]]; then
+    if [[ ! ${var} =~ ".php" ]]; then
         echo "Check file $var: not php file, ignoring..."
         continue
     fi
 
     # phplint
-    if [[ $phplint == "true" ]]; then
-        phplintResult=`$phplint_path $var | grep error`
-        if [ x"$phplintResult" != x ]; then
+    if [[ ${phplint} == "true" ]]; then
+        phplintResult=`${phplint_path} $var | grep error`
+        if [[ x"$phplintResult" != x ]]; then
             echo "-------------------------------------"
             echo "Git commit error, get phplint errors:"
-            $phplint_path $var | while read line
+            ${phplint_path} ${var} | while read line
             do
-                echo $line
+                echo ${line}
             done
             echo "-------------------------------------"
             exit 1
@@ -66,14 +66,14 @@ do
     fi
 
     # phpcs
-    if [[ $phpcs == "true" ]]; then
-        phpcsResult=`$phpcs_path -n --standard=psr2 $var | grep ERROR | grep -v "0 ERRORS\|exist\|usage"`
-        if [ x"$phpcsResult" != x ]; then
+    if [[ ${phpcs} == "true" ]]; then
+        phpcsResult=`${phpcs_path} -n --standard=psr2 ${var} | grep ERROR | grep -v "0 ERRORS\|exist\|usage"`
+        if [[ x"$phpcsResult" != x ]]; then
             echo "-------------------------------------"
             echo "Git commit error, get phpcs errors:"
-            $phpcs_path --standard=psr2 $var | while read line
+            ${phpcs_path} -n --standard=psr2 ${var} | while read line
             do
-                echo $line
+                echo ${line}
             done
             echo "-------------------------------------"
             exit 1

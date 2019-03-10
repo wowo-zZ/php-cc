@@ -18,7 +18,7 @@
   "repositories": [
     {
       "type": "composer",
-      "url": "http://172.31.202.28:8098"
+      "url": "https://packagist.laravel-china.org"
     },
     {
       "packagist": false
