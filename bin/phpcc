@@ -19,18 +19,25 @@ switch ($argv[1]) {
         break;
     case 'config':
         if (isset($argv[2]) && isset($argv[3])) {
+            if ('phpcs_standard' == $argv[2] && !in_array(mb_strtoupper($argv[3]), ['MYSOURCE', 'PEAR', 'PSR1', 'PSR12', 'PSR2', 'SQUIZ', 'ZEND'])) {
+                echo "phpcs standard error! \n";
+                exit(0);
+            }
             write_ini_file($argv[2], $argv[3]);
+            exit(0);
+        } else {
+            echo 'Need more params' . "\n";
         }
         break;
     default:
-        print<<<EOT
-No such command...
+        echo 'No such command...' . "\n";
+        break;
+}
+print <<<EOT
 install:    install php-cc,add pre-commit to .git/hooks,and rename the old pre-commit file to pre-commit.bak
 remove:     remove php-cc,remove .git/hooks/pre-commit,and mv pre-commit.bak to pre-commit
 config:     config item-key [set-value]
 EOT;
-        break;
-}
 exit(0);
 
 function install()

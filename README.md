@@ -35,12 +35,12 @@ composer require zhenggui/php-cc
 - v1.8:支持remove php-cc，并将原有的pre-commit还原
 
 #### todolist
-- 支持配置phpcs standard
 - 支持检测结果处理时的强制模式(不通过无法提交)/人工选择模式(可以选择是否提交)
 - 支持phpcs过滤关键字，为了支持现有项目可能存在某些不便改造的代码风格
 - 备份git的钩子时,使用时间,防止覆盖已有的备份
 - 支持配置项的查看
-- phpcs过滤waring结果
+- ~~phpcs过滤waring结果~~
+- ~~支持配置phpcs standard~~
 - ~~识别文件格式，php文件才进行check~~
 - ~~支持分别启用/关停 phplint和phpcs~~
 - ~~支持自定义phplint和phpcs的命令所在目录~~
