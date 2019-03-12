@@ -72,7 +72,7 @@ function install()
     }
 
     if (is_file('./.git/hooks/pre-commit')) {
-        exec('mv ./.git/hooks/pre-commit ./.git/hooks/pre-commit.bak');
+        exec('mv ./.git/hooks/pre-commit ./.git/hooks/pre-commit.bak.' . time());
     }
     exec('cp ./vendor/zhenggui/php-cc/pre-commit ./.git/hooks');
 

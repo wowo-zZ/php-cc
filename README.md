@@ -33,13 +33,19 @@ composer require zhenggui/php-cc
 - v1.6:bugfix(修复exit位置问题)
 - v1.7:支持Delete类型文件
 - v1.8:支持remove php-cc，并将原有的pre-commit还原
+- v1.9:支持配置项配置
+- v1.10:bugfix(remove命令返回错误)
+- v1.11:bugfix
+- v1.12:增加phpcs依赖
+- v1.13:功能更新
+- v1.14:代码优化
 
 #### todolist
 - 支持检测结果处理时的强制模式(不通过无法提交)/人工选择模式(可以选择是否提交)
 - 支持phpcs过滤关键字，为了支持现有项目可能存在某些不便改造的代码风格
-- 备份git的钩子时,使用时间,防止覆盖已有的备份
 - 支持配置项的查看
 - 优化检测php文件的方法(不是直接使用文件后缀来判断)
+- ~~备份git的钩子时,使用时间,防止覆盖已有的备份~~
 - ~~phpcs过滤waring结果~~
 - ~~支持配置phpcs standard~~
 - ~~识别文件格式，php文件才进行check~~
