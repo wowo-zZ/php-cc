@@ -25,6 +25,14 @@ switch ($argv[1]) {
             }
             write_ini_file($argv[2], $argv[3]);
             exit(0);
+        } elseif (isset($argv[2]) && !isset($argv[3])) {
+            $config_items = get_ini_file();
+            if (isset($config_items[$argv[2]])) {
+                echo $config_items[$argv[2]] . "\n";
+            } else {
+                echo "No config for key [{$argv[2]}]\n";
+            }
+            exit(0);
         } else {
             echo 'Need more params' . "\n";
         }
@@ -98,8 +106,9 @@ function remove()
     exit(0);
 }
 
-function get_ini_file($file_name)
+function get_ini_file()
 {
+    $file_name = './phpcc.ini';
     $str = file_get_contents($file_name);
     $ini_list = explode("\n", $str);
     $ini_items = array();

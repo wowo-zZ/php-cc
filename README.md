@@ -58,4 +58,4 @@ composer require zhenggui/php-cc
 - ~~pre-commit中增加对命令的检查~~
 
 #### 注意事项
-phpcc的pre-commit会覆盖原有的pre-commit，但仍然会将它备份为pre-commit.bak。所以之前有在pre-commit中插入操作，请谨慎安装。
+phpcc的pre-commit会覆盖原有的pre-commit，但仍然会将它备份为pre-commit.bak.{timestamp}。所以之前有在pre-commit中插入操作，请谨慎安装。
