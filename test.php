@@ -1,7 +1,7 @@
 <?php
 namespace Test;
 
-$a = 1;
+$a= 1;
 class Test
 {
 }
