@@ -2,9 +2,11 @@
 
 function askContinue() {
     read -p "Errors found, input [y/yes] to continue to commit:" content
-    if [[ ${content} == "y" || $content == "yes" ]] ;then
+    if [[ ${content} == "y" || ${content} == "yes" ]] ;then
+        echo "Errors found, but continue to commit"
         exit 0
     fi
+    echo "Abort to commit ~"
     exit 1
 }
 
@@ -66,7 +68,8 @@ do
             do
                 echo ${line}
             done
-            askContinue
+            #askContinue
+            exit 1
         else
             echo "phplint file [$var] success !"
         fi
@@ -82,7 +85,8 @@ do
             do
                 echo ${line}
             done
-            askContinue
+            #askContinue
+            exit 1
         else
             echo "phpcs file [$var] success !"
         fi
