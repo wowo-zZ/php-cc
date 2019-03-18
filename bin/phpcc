@@ -108,7 +108,7 @@ function remove()
 
 function get_ini_file()
 {
-    $file_name = './phpcc.ini';
+    $file_name = './vendor/zhenggui/php-cc/phpcc.ini';
     $str = file_get_contents($file_name);
     $ini_list = explode("\n", $str);
     $ini_items = array();
@@ -123,7 +123,7 @@ function get_ini_file()
 
 function write_ini_file($key, $value)
 {
-    $config_file_path = './phpcc.ini';
+    $config_file_path = './vendor/zhenggui/php-cc/phpcc.ini';
     $content = file_get_contents($config_file_path);
     if (strpos($content, "$key=")) {
         $content = preg_replace("/$key=.*/", "$key=$value", $content);
