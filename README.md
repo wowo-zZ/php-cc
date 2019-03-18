@@ -39,6 +39,7 @@ composer require zhenggui/php-cc
 - v1.12:增加phpcs依赖
 - v1.13:功能更新
 - v1.14:代码优化
+- v1.15:支持配置查看,命令推荐使用composer命令形式
 
 #### todolist
 - 支持检测结果处理时的强制模式(不通过无法提交)/人工选择模式(可以选择是否提交)
