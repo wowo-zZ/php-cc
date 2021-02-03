@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+<?php
+if (file_exists($file = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php')) {
+    require $file;
+} else {
+    die(
+        'You need to set up the project dependencies using the following commands:' . PHP_EOL .
+        'wget http://getcomposer.org/composer.phar' . PHP_EOL .
+        'php composer.phar install' . PHP_EOL
+    );
+}
+
+use wowozZ\phpcc\Console\Application;
+use wowozZ\phpcc\Command\InstallCommand;
+
+$application = new Application();
+$application->add(new InstallCommand());
+$application->run();
