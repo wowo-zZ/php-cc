@@ -20,8 +20,7 @@ class InstallCommand extends Command
     {
         $this
         ->setDescription('Install phpcc to your git config.')
-        ->setHelp('This command will modify your pre-commit file. Make phpcc work.')
-    ;
+        ->setHelp('This command will modify your pre-commit file. Make phpcc work.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)

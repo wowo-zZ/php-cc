@@ -5,14 +5,13 @@ class InitTool
 {
     public static function init($env)
     {
-        switch($env) {
+        switch ($env) {
             case 'development':
                 self::initDev();
                 break;
             case 'production':
                 self::initProd();
                 break;
-
         }
     }
 
