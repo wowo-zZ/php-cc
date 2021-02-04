@@ -14,6 +14,9 @@ define("ENV", is_file("./.dev.lock") ? 'development' : 'production');
 
 use wowozZ\phpcc\Console\Application;
 use wowozZ\phpcc\Command\InstallCommand;
+use wowozZ\phpcc\Tools\InitTool;
+
+InitTool::init(ENV);
 
 $application = new Application();
 $application->add(new InstallCommand());

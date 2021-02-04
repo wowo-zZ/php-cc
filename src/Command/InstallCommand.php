@@ -76,7 +76,7 @@ class InstallCommand extends Command
                 ]);
             return 1;
         }
-        exec (sprintf('cp %s ./.git/hooks', $source_file));
+        exec(sprintf('cp %s ./.git/hooks', $source_file));
 
         echo "php-cc install success!\n";
         
