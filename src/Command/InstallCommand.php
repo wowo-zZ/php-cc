@@ -7,6 +7,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use wowozZ\phpcc\Tools\OutputTool;
+
 class InstallCommand extends Command
 {
     protected static $defaultName = 'install';
@@ -26,17 +28,17 @@ class InstallCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         # check git
-        $output->writeln("Checking git repository...");
+        $output->write("Checking git repository");
+        OutputTool::loading($output, 3);
         if (!is_dir("./.git")) {
             $output->writeln("Your project has not been init by git! Please check it...");
             return 1;
         }
         $output->writeln('<info>Git repository check done.</info>');
-        $output->writeln('.');
-        $output->writeln('.');
 
         # check phplint
-        $output->writeln("Checking phplint install...");
+        $output->write("Checking phplint install");
+        OutputTool::loading($output, 3);
         exec('./vendor/bin/phplint --version', $phplint_check_rs, $return_var);
         if ($return_var) {
             $output->writeln("Checking phplint failed! Please install phplint first!");
@@ -47,11 +49,10 @@ class InstallCommand extends Command
                 "<comment>" . $phplint_check_rs[0] . "</comment>"
             ]);
         }
-        $output->writeln('.');
-        $output->writeln('.');
 
         # check phpcs
-        $output->writeln("Checking phpcs install...");
+        $output->write("Checking phpcs install");
+        OutputTool::loading($output, 3);
         exec('./vendor/bin/phpcs --version', $phpcs_check_rs, $return_var);
         if ($return_var) {
             $output->writeln("<error>Checking phpcs failed! Please install phpcs first!</error>");
@@ -60,8 +61,7 @@ class InstallCommand extends Command
             $output->writeln("<info>Checking phpcs success!</info>");
             $output->writeln('<comment>' . $phpcs_check_rs[0] . '</comment');
         }
-        $output->writeln('.');
-        $output->writeln('.');
+        $output->write("<info>start to install phpcc</>");
 
         if (is_file('./.git/hooks/pre-commit')) {
             exec('mv ./.git/hooks/pre-commit ./.git/hooks/pre-commit.bak.' . time());
@@ -76,8 +76,8 @@ class InstallCommand extends Command
             return 1;
         }
         exec(sprintf('cp %s ./.git/hooks', $source_file));
-
-        echo "php-cc install success!\n";
+        OutputTool::loading($output, 3);
+        $output->writeln("<info>php-cc install success!</>");
         
         return 0;
     }
