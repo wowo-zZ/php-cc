@@ -15,8 +15,7 @@ class RemoveCommand extends Command
     {
         $this
             ->setDescription('Remove phpcc from your project.')
-            ->setHelp('This command will remove phpcc from your project by delete pre-commit file...')
-    ;
+            ->setHelp('This command will remove phpcc from your project by delete pre-commit file...');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
