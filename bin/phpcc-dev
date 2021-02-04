@@ -9,6 +9,8 @@ if (file_exists($file = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARAT
         'php composer.phar install' . PHP_EOL
     );
 }
+// check enviroment
+define("ENV", is_file("./.dev.lock") ? 'development' : 'production');
 
 use wowozZ\phpcc\Console\Application;
 use wowozZ\phpcc\Command\InstallCommand;
