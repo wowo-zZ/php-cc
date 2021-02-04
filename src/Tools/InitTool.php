@@ -5,7 +5,7 @@ class InitTool
 {
     public static function init($env)
     {
-        switch($env) {
+        switch ($env) {
             case 'development':
                 self::initDev();
                 break;
