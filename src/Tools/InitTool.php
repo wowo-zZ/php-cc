@@ -24,7 +24,6 @@ class InitTool
 
     private static function initProd()
     {
-        return
-        ;
+        return ;
     }
 }
