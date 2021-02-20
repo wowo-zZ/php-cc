@@ -11,13 +11,17 @@ if (file_exists($file = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARAT
 }
 // check enviroment
 define("ENV", is_file("./.dev.lock") ? 'development' : 'production');
+define("DEV", "development");
+define("PRO", "production");
 
 use wowozZ\phpcc\Console\Application;
 use wowozZ\phpcc\Command\InstallCommand;
+use wowozZ\phpcc\Command\EnvCommand;
 use wowozZ\phpcc\Tools\InitTool;
 
 InitTool::init(ENV);
 
 $application = new Application();
 $application->add(new InstallCommand());
+$application->add(new EnvCommand());
 $application->run();

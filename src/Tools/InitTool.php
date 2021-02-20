@@ -26,4 +26,9 @@ class InitTool
     {
         return;
     }
+
+    public static function checkEnv($env): bool
+    {
+        return ENV === $env;
+    }
 }
