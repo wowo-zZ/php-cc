@@ -8,11 +8,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use wowozZ\phpcc\Tools\InitTool;
 
-class EnvCommand extends Command 
+class EnvCommand extends Command
 {
     protected static $defaultName = "env";
 
-    public function __construct() 
+    public function __construct()
     {
         parent::__construct();
     }

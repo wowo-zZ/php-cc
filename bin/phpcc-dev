@@ -17,6 +17,7 @@ define("PRO", "production");
 use wowozZ\phpcc\Console\Application;
 use wowozZ\phpcc\Command\InstallCommand;
 use wowozZ\phpcc\Command\EnvCommand;
+use wowozZ\phpcc\Command\RemoveCommand;
 use wowozZ\phpcc\Tools\InitTool;
 
 InitTool::init(ENV);
@@ -24,4 +25,5 @@ InitTool::init(ENV);
 $application = new Application();
 $application->add(new InstallCommand());
 $application->add(new EnvCommand());
+$application->add(new RemoveCommand());
 $application->run();
