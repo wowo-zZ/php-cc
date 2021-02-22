@@ -20,6 +20,7 @@ class InitTool
         !is_dir('./vendor/zhenggui') ? mkdir('./vendor/zhenggui') : '';
         !is_dir('./vendor/zhenggui/php-cc') ? mkdir('./vendor/zhenggui/php-cc') : '';
         !is_file('./vendor/zhenggui/php-cc/phpcc.ini') ? exec('cp ./phpcc.ini ./vendor/zhenggui/php-cc/') : '';
+        !is_file('./vendor/zhenggui/php-cc/phpcc.yml') ? exec('cp ./phpcc.yml ./vendor/zhenggui/php-cc/') : '';
     }
 
     private static function initProd()

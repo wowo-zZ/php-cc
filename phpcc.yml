@@ -1,0 +1,9 @@
+# config for phplint
+phplint: true
+phplint_path: ./vendor/bin/phplint
+
+# config for phpcs
+phpcs: true
+phpcs_path: ./vendor/bin/phpcs
+phpcs_ignore:
+phpcs_standard: psr12
