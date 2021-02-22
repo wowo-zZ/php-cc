@@ -20,7 +20,7 @@ class ConfigCommand extends Command
              ->setHelp("You can configure phpcc through this command.");
     }
 
-    public function execute(InputInterface $input, OutputInterface $output) 
+    public function execute(InputInterface $input, OutputInterface $output)
     {
         return 0;
     }
