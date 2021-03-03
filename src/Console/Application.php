@@ -14,5 +14,4 @@ class Application extends BaseApplication
         parent::__construct(self::NAME, self::VERSION);
     }
 
-
 }
