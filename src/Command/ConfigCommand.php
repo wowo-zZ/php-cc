@@ -22,18 +22,18 @@ class ConfigCommand extends Command
         $this->setDescription("Show or Edit config items for phpcc.")
              ->setHelp("You can configure phpcc through this command.")
              ->setDefinition(
-                new InputDefinition([
+                 new InputDefinition([
                     new InputOption('set', 's'),
                     new InputOption('field', 'f', InputOption::VALUE_REQUIRED),
                     new InputOption('value', 'a', InputOption::VALUE_OPTIONAL)
-                ])
-            );
+                 ])
+             );
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
         do {
-            // config command require the field key 
+            // config command require the field key
             if (empty($field_key = $input->getOption('field'))) {
                 $output->writeln("<error>Need to specify a field!</error>");
                 break;
@@ -47,7 +47,7 @@ class ConfigCommand extends Command
             if (empty($input->getOption('set'))) {
                 $output->write("<info>Option $field_key is {$config_content[$field_key]}.</>");
                 break;
-            } 
+            }
 
             $field_value = $input->getOption('value');
             if (empty($field_value)) {
@@ -63,7 +63,6 @@ class ConfigCommand extends Command
             $config_content[$field_key] = $field_value;
             $new_config_content = Yaml::dump($config_content);
             file_put_contents($config_file_path, $new_config_content);
-
-        } while(false);
+        } while (false);
     }
 }
