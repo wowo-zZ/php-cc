@@ -4,7 +4,7 @@
 define('ENV', is_file('./.dev.lock') ? 'development' : 'production');
 define('DEV', 'development');
 define('PRO', 'production');
-define('VENDOR_DIR', ENV == DEV ? __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR : __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR);
+define('VENDOR_DIR', ENV == DEV ? __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR : __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR);
 
 if (file_exists($file = VENDOR_DIR . 'autoload.php')) {
     require $file;

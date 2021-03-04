@@ -77,11 +77,11 @@ do
 
     # phpcs
     if [[ ${phpcs} == "true" ]]; then
-        phpcsResult=`${phpcs_path} -n --standard=psr2 ${var} | grep ERROR | grep -v "0 ERRORS\|exist\|usage"`
+        phpcsResult=`${phpcs_path} -n --standard=psr12 ${var} | grep ERROR | grep -v "0 ERRORS\|exist\|usage"`
         if [[ x"$phpcsResult" != x ]]; then
             echo "-------------------------------------"
             echo "Git commit error, get phpcs errors:"
-            ${phpcs_path} -n --standard=psr2 ${var} | while read line
+            ${phpcs_path} -n --standard=psr12 ${var} | while read line
             do
                 echo ${line}
             done

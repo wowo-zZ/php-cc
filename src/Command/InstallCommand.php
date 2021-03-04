@@ -6,7 +6,6 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-
 use wowozZ\phpcc\Tools\OutputTool;
 
 class InstallCommand extends Command
@@ -31,7 +30,7 @@ class InstallCommand extends Command
         $output->write("Checking git repository");
         OutputTool::loading($output, 3);
         if (!is_dir("./.git")) {
-            $output->writeln("Your project has not been init by git! Please check it...");
+            $output->writeln("<error>Your project has not been init by git! Please check it...</>");
             return 1;
         }
         $output->writeln('<info>Git repository check done.</info>');
@@ -61,12 +60,12 @@ class InstallCommand extends Command
             $output->writeln("<info>Checking phpcs success!</info>");
             $output->writeln('<comment>' . $phpcs_check_rs[0] . '</comment');
         }
-        $output->write("<info>start to install phpcc</>");
+        $output->writeln("<info>start to install phpcc</>");
 
         if (is_file('./.git/hooks/pre-commit')) {
             exec('mv ./.git/hooks/pre-commit ./.git/hooks/pre-commit.bak.' . time());
         }
-        $source_file = ENV == 'development' ? './pre-commit' : 'cp ./vendor/zhenggui/php-cc/pre-commit';
+        $source_file = ENV == 'development' ? './pre-commit' : './vendor/zhenggui/php-cc/pre-commit';
         if (!is_file($source_file)) {
             $output->writeln([
                 '<error>A deadly error occurs, we cannot move on :(</>',
@@ -78,7 +77,7 @@ class InstallCommand extends Command
         exec(sprintf('cp %s ./.git/hooks', $source_file));
         OutputTool::loading($output, 3);
         $output->writeln("<info>php-cc install success!</>");
-        
+
         return 0;
     }
 }
