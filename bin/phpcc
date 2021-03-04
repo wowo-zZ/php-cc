@@ -1,137 +1,33 @@
 #!/usr/bin/env php
 <?php
+// check enviroment
+define('ENV', is_file('./.dev.lock') ? 'development' : 'production');
+define('DEV', 'development');
+define('PRO', 'production');
+define('VENDOR_DIR', ENV == DEV ? __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR : __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR);
 
-if (count($argv) < 2) {
-    print<<<EOT
-install:    install php-cc,add pre-commit to .git/hooks,and rename the old pre-commit file to pre-commit.bak
-remove:     remove php-cc,remove .git/hooks/pre-commit,and mv pre-commit.bak to pre-commit
-config:     config php-cc,[phpcc config key value] is to set config item [key] to value [value]
-EOT;
-    exit(1);
+if (file_exists($file = VENDOR_DIR . 'autoload.php')) {
+    require $file;
+} else {
+    die(
+        'You need to set up the project dependencies using the following commands:' . PHP_EOL .
+        'wget http://getcomposer.org/composer.phar' . PHP_EOL .
+        'php composer.phar install' . PHP_EOL
+    );
 }
 
-switch ($argv[1]) {
-    case 'install':
-        install();
-        break;
-    case 'remove':
-        remove();
-        break;
-    case 'config':
-        if (isset($argv[2]) && isset($argv[3])) {
-            if ('phpcs_standard' == $argv[2] && !in_array(mb_strtoupper($argv[3]), ['MYSOURCE', 'PEAR', 'PSR1', 'PSR12', 'PSR2', 'SQUIZ', 'ZEND'])) {
-                echo "phpcs standard error! \n";
-                exit(0);
-            }
-            write_ini_file($argv[2], $argv[3]);
-            exit(0);
-        } elseif (isset($argv[2]) && !isset($argv[3])) {
-            $config_items = get_ini_file();
-            if (isset($config_items[$argv[2]])) {
-                echo $config_items[$argv[2]] . "\n";
-            } else {
-                echo "No config for key [{$argv[2]}]\n";
-            }
-            exit(0);
-        } else {
-            echo 'Need more params' . "\n";
-        }
-        break;
-    default:
-        echo 'No such command...' . "\n";
-        break;
-}
-print <<<EOT
-install:    install php-cc,add pre-commit to .git/hooks,and rename the old pre-commit file to pre-commit.bak
-remove:     remove php-cc,remove .git/hooks/pre-commit,and mv pre-commit.bak to pre-commit
-config:     config item-key [set-value]
-EOT;
-exit(0);
+use wowozZ\phpcc\Console\Application;
+use wowozZ\phpcc\Command\InstallCommand;
+use wowozZ\phpcc\Command\EnvCommand;
+use wowozZ\phpcc\Command\RemoveCommand;
+use wowozZ\phpcc\Command\ConfigCommand;
+use wowozZ\phpcc\Tools\InitTool;
 
-function install()
-{
-    # check git
-    echo "Checking git repository...\n";
-    if (!is_dir("./.git")) {
-        echo "Your project has not been init by git! Please check it...\n";
-        exit(1);
-    }
+InitTool::init(ENV);
 
-    # check phplint
-    echo "Checking phplint install...\n";
-    exec('./vendor/bin/phplint --version', $phplint_check_rs, $return_var);
-    if ($return_var) {
-        echo "Checking phplint failed! Please install phplint first!";
-        exit(1);
-    } else {
-        echo "Checking phplint success!\n";
-        echo $phplint_check_rs[0] . "\n";
-    }
-
-    # check phpcs
-    echo "Checking phpcs install...\n";
-    exec('phpcs --version', $phpcs_check_rs, $return_var);
-    if ($return_var) {
-        echo "Checking phpcs failed! Please install phpcs first!";
-        exit(1);
-    } else {
-        echo "Checking phpcs success!\n";
-        echo $phpcs_check_rs[0] . "\n";
-    }
-
-    if (is_file('./.git/hooks/pre-commit')) {
-        exec('mv ./.git/hooks/pre-commit ./.git/hooks/pre-commit.bak.' . time());
-    }
-    exec('cp ./vendor/zhenggui/php-cc/pre-commit ./.git/hooks');
-
-    echo "php-cc install success!\n";
-    exit(0);
-}
-
-function remove()
-{
-    # delete phpcc file
-    echo "Delete pre-commit file...\n";
-    if (is_file('.git/hooks/pre-commit')) {
-        exec('rm -f .git/hooks/pre-commit');
-    }
-
-    # check old file
-    echo "Retrieve the old pre-commit file...\n";
-    if (is_file('.git/hooks/pre-commit.bak')) {
-        exec('mv .git/hooks/pre-commit.bak .git/hooks/pre-commit');
-    }
-
-    echo "Remove phpcc success!\n";
-    exit(0);
-}
-
-function get_ini_file()
-{
-    $file_name = './vendor/zhenggui/php-cc/phpcc.ini';
-    $str = file_get_contents($file_name);
-    $ini_list = explode("\n", $str);
-    $ini_items = array();
-    foreach ($ini_list as $item) {
-        $one_item = explode("=", $item);
-        if (isset($one_item[0]) && isset($one_item[1])) {
-            $ini_items[trim($one_item[0])] = trim($one_item[1]);
-        }
-    }
-    return $ini_items;
-}
-
-function write_ini_file($key, $value)
-{
-    $config_file_path = './vendor/zhenggui/php-cc/phpcc.ini';
-    $content = file_get_contents($config_file_path);
-    if (strpos($content, "$key=")) {
-        $content = preg_replace("/$key=.*/", "$key=$value", $content);
-    } else {
-        $content .= "\n";
-        $content .= "$key=$value";
-    }
-    $file = fopen($config_file_path, 'w');
-    fwrite($file, $content);
-    return true;
-}
+$application = new Application();
+$application->add(new InstallCommand());
+$application->add(new EnvCommand());
+$application->add(new RemoveCommand());
+$application->add(new ConfigCommand());
+$application->run();
