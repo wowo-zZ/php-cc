@@ -5,23 +5,31 @@ PHP code check
 利用git hook、phplint、phpcs，在code commit的时候对php代码进行语法检测、代码风格检查，如果有问题，不允许提交。
 目前仅支持Linux类系统上运行。
 
-#### 使用
+#### 安装&使用
 composer require zhenggui/php-cc
 
-安装成功之后执行:``composer exec phpcc install``该命令会检查phplint、phpcs的安装情况，并将git原有的pre-commit钩子备份，再将php-cc的pre-commit钩子拷贝至``.git/hooks``中。
+安装成功之后执行:``./vendor/bin/phpcc install``该命令会检查phplint、phpcs的安装情况，并将git原有的pre-commit钩子备份，再将php-cc的pre-commit钩子拷贝至``.git/hooks``中。
 
-这样，在git commit之前，就会执行phplint和phpcs检查待提交的文件，如果不满足要求，则会组织代码提交。
+这样，在git commit之前，就会执行phplint和phpcs检查待提交的文件，如果不满足要求，则会阻止代码提交。
 
 #### 指令
-|指令 (composer exec -v phpcc {指令}|用法|
+|指令 (./vendor/bin/phpcc {指令}|用法|
 |----|----|
+|env|查看当前运行环境|
 |install|安装php-cc|
 |remove|移除php-cc|
 |config|配置|
 
+config指令参数
+|参数|缩写|用法|
+|----|----|----|
+|--set|-s|设置配置变量的值|非必须，不传入的话默认是获取配置变量的值|
+|--feild|-f|操作的字段的key|
+|--value|-a|待设置的值|
+
 #### 注意事项
 1. 建议使用最新版本，最新版本可以在仓库的tags中查看;
-2. 包以提交到packagist，但是国内安装比较慢，推荐自建composer的repository来安装。
+2. 包已提交到packagist，但是国内安装比较慢，推荐翻墙安装。
 
 #### 更新日志
 - v1.0:初始版本
@@ -40,6 +48,7 @@ composer require zhenggui/php-cc
 - v1.13:功能更新
 - v1.14:代码优化
 - v1.15:支持配置查看,命令推荐使用composer命令形式
+- v2.0:使用symfony/component重构，优化交互
 
 #### todolist
 - 支持检测结果处理时的强制模式(不通过无法提交)/人工选择模式(可以选择是否提交)
