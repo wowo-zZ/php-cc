@@ -1,7 +1,10 @@
 <?php
+
 namespace wowozZ\phpcc\Tools;
 
-class InitTool
+use wowozZ\phpcc\Tools\Tool;
+
+class InitTool extends Tool
 {
     public static function init($env)
     {

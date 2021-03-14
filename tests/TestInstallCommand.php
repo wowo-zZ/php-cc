@@ -1,4 +1,5 @@
 <?php
+
 namespace wowozZ\phpcc\test;
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
@@ -19,6 +20,5 @@ class TestInstallCommand extends KernalTestCase
         // the output of the command in the console
         $output = $commandTester->getDisplay();
         $this->assertStringContainsString('install success', $output);
-
     }
 }
