@@ -65,7 +65,7 @@ class InstallCommand extends Command
         if (is_file('./.git/hooks/pre-commit')) {
             exec('mv ./.git/hooks/pre-commit ./.git/hooks/pre-commit.bak.' . time());
         }
-        $source_file = ENV == 'development' ? './pre-commit' : './vendor/zhenggui/php-cc/pre-commit';
+        $source_file = ENV == 'development' ? './pre-commit' : './vendor/wowo-zz/php-cc/pre-commit';
         if (!is_file($source_file)) {
             $output->writeln([
                 '<error>A deadly error occurs, we cannot move on :(</>',

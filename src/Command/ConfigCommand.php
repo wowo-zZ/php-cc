@@ -40,7 +40,7 @@ class ConfigCommand extends Command
             }
 
             // get the content of current config
-            $config_file_path = VENDOR_DIR . 'zhenggui' . DIRECTORY_SEPARATOR . 'php-cc' . DIRECTORY_SEPARATOR . 'phpcc.yml';
+            $config_file_path = VENDOR_DIR . 'wowo-zz' . DIRECTORY_SEPARATOR . 'php-cc' . DIRECTORY_SEPARATOR . 'phpcc.yml';
             $config_content = Yaml::parseFile($config_file_path);
 
             // if 'set' option is null, it is a get option

@@ -20,10 +20,10 @@ class InitTool extends Tool
 
     private static function initDev()
     {
-        !is_dir('./vendor/zhenggui') ? mkdir('./vendor/zhenggui') : '';
-        !is_dir('./vendor/zhenggui/php-cc') ? mkdir('./vendor/zhenggui/php-cc') : '';
-        !is_file('./vendor/zhenggui/php-cc/phpcc.ini') ? exec('cp ./phpcc.ini ./vendor/zhenggui/php-cc/') : '';
-        !is_file('./vendor/zhenggui/php-cc/phpcc.yml') ? exec('cp ./phpcc.yml ./vendor/zhenggui/php-cc/') : '';
+        !is_dir('./vendor/wowo-zz') ? mkdir('./vendor/wowo-zz') : '';
+        !is_dir('./vendor/wowo-zz/php-cc') ? mkdir('./vendor/wowo-zz/php-cc') : '';
+        !is_file('./vendor/wowo-zz/php-cc/phpcc.ini') ? exec('cp ./phpcc.ini ./vendor/wowo-zz/php-cc/') : '';
+        !is_file('./vendor/wowo-zz/php-cc/phpcc.yml') ? exec('cp ./phpcc.yml ./vendor/wowo-zz/php-cc/') : '';
     }
 
     private static function initProd()

@@ -9,11 +9,11 @@ final class InitToolTest extends TestCase
 {
     public function testEnvDev(): void
     {
-        file_exists('./vendor/zhenggui/php-cc/phpcc.ini') && unlink('./vendor/zhenggui/php-cc/phpcc.ini');
-        file_exists('./vendor/zhenggui/php-cc/phpcc.yml') && unlink('./vendor/zhenggui/php-cc/phpcc.yml');
+        file_exists('./vendor/wowo-zz/php-cc/phpcc.ini') && unlink('./vendor/wowo-zz/php-cc/phpcc.ini');
+        file_exists('./vendor/wowo-zz/php-cc/phpcc.yml') && unlink('./vendor/wowo-zz/php-cc/phpcc.yml');
         InitTool::init('development');
-        $this->assertFileExists('./vendor/zhenggui/php-cc/phpcc.ini');
-        $this->assertFileExists('./vendor/zhenggui/php-cc/phpcc.yml');
+        $this->assertFileExists('./vendor/wowo-zz/php-cc/phpcc.ini');
+        $this->assertFileExists('./vendor/wowo-zz/php-cc/phpcc.yml');
     }
 
     public function testCheckEnv(): void
