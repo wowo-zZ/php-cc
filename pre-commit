@@ -12,7 +12,7 @@ function askContinue() {
 
 # 引入配置文件
 # read config file
-source ./vendor/zhenggui/php-cc/phpcc.ini
+source ./vendor/wowo-zz/php-cc/phpcc.ini
 
 # 检查phplint的命令路径是否配置
 # 如果没有配置,则使用默认的路径

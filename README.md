@@ -6,7 +6,7 @@ PHP code check
 目前仅支持Linux类系统上运行。
 
 #### 安装&使用
-composer require zhenggui/php-cc
+composer require wowo-zZ/php-cc
 
 安装成功之后执行:``./vendor/bin/phpcc install``该命令会检查phplint、phpcs的安装情况，并将git原有的pre-commit钩子备份，再将php-cc的pre-commit钩子拷贝至``.git/hooks``中。
 
@@ -32,23 +32,7 @@ config指令参数
 2. 包已提交到packagist，但是国内安装比较慢，推荐翻墙安装。
 
 #### 更新日志
-- v1.0:初始版本
-- v1.1:修复composer安装bug
-- v1.2:设定默认的phpcs standard为psr2
-- v1.3:bugfix(修复命令路径错误的问题)
-- v1.4:bugfix(修复phpcs检查失败时返回成功的问题)
-- v1.5:bugfix(修复phpcs，忽略warnings)
-- v1.6:bugfix(修复exit位置问题)
-- v1.7:支持Delete类型文件
-- v1.8:支持remove php-cc，并将原有的pre-commit还原
-- v1.9:支持配置项配置
-- v1.10:bugfix(remove命令返回错误)
-- v1.11:bugfix
-- v1.12:增加phpcs依赖
-- v1.13:功能更新
-- v1.14:代码优化
-- v1.15:支持配置查看,命令推荐使用composer命令形式
-- v2.0:使用symfony/component重构，优化交互
+- 1.0: 使用Symfony后重新发布
 
 #### todolist
 - 支持检测结果处理时的强制模式(不通过无法提交)/人工选择模式(可以选择是否提交)
