@@ -1,10 +1,10 @@
 {
-  "name": "zhenggui/php-cc",
+  "name": "wowo-zZ/php-cc",
   "description": "php code check tool",
   "type": "util",
   "authors": [
     {
-      "name": "wowoinhfut",
+      "name": "Gui Zheng",
       "email": "zhenggui5228@126.com"
     }
   ],
