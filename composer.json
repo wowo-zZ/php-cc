@@ -1,7 +1,8 @@
 {
-  "name": "wowo-zz/php-cc",
+  "name": "zhenggui/php-cc",
   "description": "php code check tool",
   "type": "util",
+  "license": "Apache-2.0",
   "authors": [
     {
       "name": "Gui Zheng",
